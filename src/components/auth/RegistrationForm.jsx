@@ -1,8 +1,10 @@
 import React from "react";
 import Field from "../common/Field";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export default function RegistrationForm() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
@@ -12,6 +14,7 @@ export default function RegistrationForm() {
 
   const submitForm = (formData) => {
     console.log(formData);
+    navigate("/me");
   };
 
   return (
@@ -89,8 +92,11 @@ export default function RegistrationForm() {
               <input
                 {...register("confirmPassword", {
                   required: "Please confirm your password",
-                  validate: (value, formValues) =>                              //value → the value of confirmPassword field.
-                    value === formValues.password || "Passwords do not match",  //allValues.password → the value from the password field.
+                  validate: (
+                    value,
+                    formValues //value → the value of confirmPassword field.
+                  ) =>
+                    value === formValues.password || "Passwords do not match", //allValues.password → the value from the password field.
                 })}
                 id="confirmPassword"
                 type="password"
