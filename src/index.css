@@ -1,0 +1,212 @@
+@import url("https://fonts.cdnfonts.com/css/satoshi");
+@import "tailwindcss";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-satoshi: "Satoshi", "sans-serif";
+  --sidebar-width: 250px;
+}
+
+@layer base {
+  body {
+    @apply font-satoshi bg-white;
+  }
+}
+
+@layer components {
+  .floating-navbar {
+    @apply fixed left-0 top-0 z-50 h-full w-[var(--sidebar-width)];
+  }
+  .like-button:hover {
+    @apply scale-110 transition-transform duration-200;
+  }
+  .caption-text {
+    @apply inline;
+  }
+  .edit-container {
+    @apply max-w-3xl mx-auto p-5;
+  }
+  .form-input {
+    @apply w-full p-2.5 border border-gray-300 rounded bg-gray-50 text-sm;
+  }
+  .form-input:focus {
+    @apply outline-none border-gray-400;
+  }
+  .password-strength {
+    @apply h-1 rounded transition-all duration-300 ease-in-out;
+  }
+  .main-container {
+    @apply ml-[var(--sidebar-width)];
+  }
+  .upload-container {
+    @apply h-[calc(100vh-60px)] 
+    ml-[var(--sidebar-width)] 
+    w-full 
+    max-w-[calc(100vw-var(--sidebar-width))];
+  }
+  .image-preview {
+    @apply aspect-square object-contain bg-[#f8f8f8];
+  }
+  .caption-input {
+    @apply resize-none h-[150px];
+  }
+  .profile-container {
+    @apply max-w-[935px] mx-auto px-5 py-[30px];
+  }
+  .story-highlight {
+    @apply w-[77px] h-[77px];
+  }
+  .story-highlight-img {
+    @apply w-[66px] h-[66px];
+  }
+  .grid-image {
+    @apply aspect-square object-cover rounded-[10px] transition-transform duration-300 ease-in-out;
+  }
+  .grid-image:hover {
+    @apply scale-105 shadow-[0_0_10px_10px_rgba(0,0,0,0.1)];
+  }
+  .post-image {
+    @apply aspect-square object-cover;
+  }
+  .comments-section {
+    @apply max-h-[400px] overflow-y-auto;
+  }
+
+  .grid-image {
+    @apply aspect-square object-cover rounded-[10px] transition-transform duration-300 ease-in-out;
+  }
+
+  .grid-image:hover {
+    @apply scale-105 shadow-[0_0_10px_10px_rgba(0,0,0,0.1)];
+  }
+
+  .comments-section {
+    @apply max-h-[400px] overflow-y-auto; /* your earlier styles + scroll */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .comments-section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  @media screen and (max-width: 768px) {
+    :root {
+      --sidebar-width: 0px;
+    }
+  }
+
+  .notifications-container {
+    @apply max-w-[600px] mx-auto min-h-screen;
+  }
+  .notification-item {
+    @apply transition-colors duration-200;
+  }
+  .notification-item:hover {
+    @apply bg-[#fafafa];
+  }
+  .notification-dot {
+    @apply w-2 h-2 bg-[#0095f6] rounded-full;
+  }
+  .post-thumbnail {
+    @apply w-11 h-11 object-cover;
+  }
+
+  /* Login Container */
+  .login-container {
+    @apply max-w-[450px] w-[300px] mx-auto rounded-[12px];
+  }
+
+  /* Form Input */
+  .form-input {
+    @apply w-full px-2 py-[9px] bg-[#fafafa] border border-[#dbdbdb] rounded text-[12px];
+  }
+  .form-input:focus {
+    @apply outline-none border-[#a8a8a8];
+  }
+
+  /* Login Button */
+  .login-button {
+    @apply bg-[#0095f6] text-white w-full py-[7px] px-4 rounded font-semibold text-[14px] transition-colors duration-200;
+  }
+  .login-button:hover {
+    @apply bg-[#0086e0];
+  }
+  .login-button:disabled {
+    @apply bg-[#b2dffc] cursor-not-allowed;
+  }
+
+  /* Facebook Button */
+  .facebook-button {
+    @apply text-[#385185] font-semibold text-[14px];
+  }
+
+  /* OR Separator */
+  .or-separator {
+    @apply flex items-center text-[#8e8e8e] text-[13px] font-semibold my-[18px];
+  }
+  .or-separator::before,
+  .or-separator::after {
+    content: "";
+    @apply flex-1 h-px bg-[#dbdbdb];
+  }
+  .or-separator::before {
+    @apply mr-[18px];
+  }
+  .or-separator::after {
+    @apply ml-[18px];
+  }
+  .app-download {
+    @apply flex justify-center gap-2;
+  }
+
+  /* Signup Container */
+  .signup-container {
+    @apply max-w-[350px] mx-auto;
+  }
+
+  /* Form Input */
+  .form-input {
+    @apply w-full px-2 py-[9px] bg-[#fafafa] border border-[#dbdbdb] rounded-[3px] text-[12px];
+  }
+  .form-input:focus {
+    @apply outline-none border-[#a8a8a8];
+  }
+
+  /* Signup Button */
+  .signup-button {
+    @apply bg-[#0095f6] text-white w-full py-[7px] px-4 rounded font-semibold text-[14px] transition-colors duration-200;
+  }
+  .signup-button:hover {
+    @apply bg-[#0086e0];
+  }
+  .signup-button:disabled {
+    @apply bg-[#b2dffc] cursor-not-allowed;
+  }
+
+  /* Facebook Button */
+  .facebook-button {
+    @apply text-[#385185] font-semibold text-[14px];
+  }
+
+  /* OR Separator */
+  .or-separator {
+    @apply flex items-center text-[#8e8e8e] text-[13px] font-semibold my-[18px];
+  }
+  .or-separator::before,
+  .or-separator::after {
+    content: "";
+    @apply flex-1 h-px bg-[#dbdbdb];
+  }
+  .or-separator::before {
+    @apply mr-[18px];
+  }
+  .or-separator::after {
+    @apply ml-[18px];
+  }
+
+  /* App Download Buttons */
+  .app-download {
+    @apply flex justify-center gap-2;
+  }
+}
