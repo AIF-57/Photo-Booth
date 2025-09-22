@@ -10,7 +10,7 @@
 
 @layer base {
   body {
-    @apply font-satoshi bg-white;
+    @apply font-satoshi bg-white ;
   }
 }
 

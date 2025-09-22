@@ -5,6 +5,7 @@ import { FormProvider } from "react-hook-form";
 export default function ProfileInfo({ formMethods }) {
   const { register } = formMethods;
 
+
   return (
     <FormProvider {...formMethods}>
       {/* <!-- Website Section --> */}

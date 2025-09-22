@@ -4,15 +4,13 @@ import Avatar from "../../assets/avatar.jpg";
 import LogOut from "../auth/LogOut";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import customEmail from "../../utils/customEmail";
 
 export default function Sidebar() {
-  const {auth} = useAuth();
+  const { auth } = useAuth();
   return (
     <aside className="hidden floating-navbar bg-white  border-r border-[#e5e7eb] px-6 py-2 md:flex flex-col">
-      <Link
-        to="/"
-        className="flex gap-2 items-center font-medium py-4 mb-8"
-      >
+      <Link to="/" className="flex gap-2 items-center font-medium py-4 mb-8">
         <img src={Logo} alt="PhotoBooth" className="h-6 object-contain" />
         <h2 className="text-lg">Photo Booth</h2>
       </Link>
@@ -109,14 +107,18 @@ export default function Sidebar() {
           <div className="flex items-center">
             <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300">
               <img
-                src={Avatar}
-                alt="User avatar"
+                src={`${import.meta.env.VITE_SERVER_BASE_URL_IMG}/${
+                  auth.user?.avatar
+                }`}
+                alt={auth.user.name}
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="ml-2">
               <p className="font-semibold text-sm">{auth.user.name}</p>
-              <p className="text-xs text-gray-500  leading-0">@saadh393</p>
+              <p className="text-xs text-gray-500  leading-0">
+                {customEmail(auth.user.email)}
+              </p>
             </div>
           </div>
         </Link>

@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import useProfile from "../../hooks/useProfile";
 
@@ -11,8 +10,10 @@ export default function Bio() {
       <div className="flex justify-items-end md:justify-start md:w-1/3 mb-6 md:mb-0 relative">
         <div className="w-24 h-24 md:w-36 md:h-36 rounded-full overflow-hidden border border-gray-300 mx-auto">
           <img
-            src="./assets/users/user-1.png"
-            alt="Profile picture"
+            src={`${import.meta.env.VITE_SERVER_BASE_URL_IMG}/${
+              state?.user?.avatar
+            }`}
+            alt={state?.user?.name}
             className="w-full h-full object-cover"
           />
         </div>
@@ -46,7 +47,7 @@ export default function Bio() {
           <p>{state?.user?.bio}</p>
           <p className="text-blue-900">
             <a
-              href="https://saadh393.github.io"
+              href={state?.user?.website}
               target="_blank"
               className="flex items-center"
             >
@@ -64,7 +65,7 @@ export default function Bio() {
                   d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
                 />
               </svg>
-              saadh393.github.io
+              {state?.user?.website}
             </a>
           </p>
         </div>

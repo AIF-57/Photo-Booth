@@ -2,9 +2,13 @@ import React from "react";
 import Field from "../common/Field";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 export default function RegistrationForm() {
-  const navigate = useNavigate()
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -12,9 +16,43 @@ export default function RegistrationForm() {
     setError,
   } = useForm();
 
-  const submitForm = (formData) => {
-    console.log(formData);
-    navigate("/me");
+  const submitForm = async (formData) => {
+    // console.log(formData);
+
+    // exclude confirmPassword
+    const { confirmPassword, ...apiData } = formData;
+    // console.log(apiData, confirmPassword)
+
+    try {
+      let response = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/auth/signup`,
+        apiData
+      );
+
+      if (response.status === 200) {
+        const { accessToken, refreshToken, user } = response.data;
+
+        if (accessToken) {
+          console.log(`registration Token: ${accessToken}`);
+
+          setAuth({ accessToken, refreshToken, user });
+          navigate("/me");
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      if (error.response) {
+        setError("registrationError", {
+          type: "random",
+          message: `${error.response.data.message}`,
+        });
+      } else {
+        setError("registrationError", {
+          type: "random",
+          message: `${error.message}`,
+        });
+      }
+    }
   };
 
   return (
@@ -44,11 +82,11 @@ export default function RegistrationForm() {
         {/* <!-- Full Name Field --> */}
         <div className="mb-2">
           <div className="relative">
-            <Field error={errors.fullName}>
+            <Field error={errors.name}>
               <input
-                {...register("fullName", { required: "Full Name is required" })}
+                {...register("name", { required: "Name is required" })}
                 type="text"
-                id="fullName"
+                id="name"
                 className="form-input"
                 placeholder="Full Name"
                 aria-label="Full Name"
@@ -113,6 +151,10 @@ export default function RegistrationForm() {
             </button>
           </div>
         </div>
+
+        {errors.registrationError && (
+          <div className="mb-2">{errors?.registrationError?.message}</div>
+        )}
 
         {/* <!-- Sign Up Button --> */}
         <div className="mb-2">
