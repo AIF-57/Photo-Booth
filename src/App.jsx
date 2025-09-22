@@ -5,6 +5,7 @@ import Register from "./pages/Register";
 import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
 import PrivateRoutes from "./routes/PrivateRoutes";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/me" element={<ProfilePage />} />
+          <Route path="/edit-profile" element={<EditProfile/>}/>
         </Route>
 
         <Route path="/login" element={<Login />} />

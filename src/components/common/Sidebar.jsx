@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 export default function Sidebar() {
   const {auth} = useAuth();
   return (
-    <aside className="hidden floating-navbar bg-white  border-r px-6 py-2 md:flex flex-col">
+    <aside className="hidden floating-navbar bg-white  border-r border-[#e5e7eb] px-6 py-2 md:flex flex-col">
       <Link
         to="/"
         className="flex gap-2 items-center font-medium py-4 mb-8"
@@ -104,8 +104,8 @@ export default function Sidebar() {
         </li>
       </ul>
 
-      <div className="flex  justify-between">
-        <a href="./profile.html">
+      <div className="flex justify-between border ">
+        <Link to="/me" className="">
           <div className="flex items-center">
             <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300">
               <img
@@ -115,11 +115,11 @@ export default function Sidebar() {
               />
             </div>
             <div className="ml-2">
-              <span className="font-semibold text-sm">{auth.user.name}</span>
+              <p className="font-semibold text-sm">{auth.user.name}</p>
               <p className="text-xs text-gray-500  leading-0">@saadh393</p>
             </div>
           </div>
-        </a>
+        </Link>
 
         <LogOut />
       </div>

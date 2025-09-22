@@ -6,7 +6,7 @@ export default function Field({ children, label, htmlFor, error }) {
   return (
     <>
       {label && (
-        <label className="auth-label" htmlFor={id}>
+        <label className="block mb-2 font-medium" htmlFor={id}>
           {label}
         </label>
       )}
@@ -20,10 +20,23 @@ export default function Field({ children, label, htmlFor, error }) {
   );
 }
 
+const typeOfChildren = ["input", "textarea", "select"];
 const getChildId = (children) => {
-  const child = React.Children.only(children);
+  let ids = [];
 
-  if ("id" in child?.props) {
-    return child.props.id;
-  }
+  const findIds = (child) => {
+    // Check if the element type is in our list
+    if (typeOfChildren.includes(child.type)) {
+      ids.push(child.props.id);
+    }
+
+    // Recursively check its children
+    if (child.props?.children) {
+      React.Children.forEach(child.props.children, findIds);
+    }
+  };
+
+  React.Children.forEach(children, findIds);
+
+  return ids.toString();
 };
