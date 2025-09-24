@@ -6,6 +6,9 @@ import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
 import PrivateRoutes from "./routes/PrivateRoutes";
 import EditProfile from "./pages/EditProfile";
+import CreatePost from "./pages/CreatePost";
+import NotificationPage from "./pages/NotificationPage";
+import PostDetails from "./components/post/PostDetails";
 
 function App() {
   return (
@@ -13,8 +16,11 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/me" element={<ProfilePage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/edit-profile" element={<EditProfile/>}/>
+          <Route path="/create-post" element={<CreatePost/>}/>
+          <Route path="/notification" element={<NotificationPage/>}/>
+          <Route path="/post-details/:postId" element={<PostDetails/>}/>
         </Route>
 
         <Route path="/login" element={<Login />} />

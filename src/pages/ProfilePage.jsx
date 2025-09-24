@@ -13,6 +13,8 @@ export default function ProfilePage() {
   const { state, dispatch } = useProfile();
 
   useEffect(() => {
+    if (!auth?.user?._id) return; // wait until user is available
+
     dispatch({ type: actions.profile.DATA_FETCHING });
 
     const fetchProfile = async () => {
@@ -35,24 +37,34 @@ export default function ProfilePage() {
       }
     };
     fetchProfile();
-  }, []);
+  }, [auth?.user?._id]);
 
-  console.log(state);
+  // console.log(state);
 
   if (state?.loading) {
-    return <div> Fetching your Profile data...</div>;
+    return (
+      <div className="p-5 ml-(--sidebar-width)">
+        {" "}
+        Fetching your Profile data...
+      </div>
+    );
   }
 
   if (state?.error) {
-    return <div> Error in fatching posts: {state?.error}</div>;
+    return (
+      <div className="p-5 ml-(--sidebar-width)">
+        {" "}
+        Error in fatching posts: {state?.error}
+      </div>
+    );
   }
   return (
     <div className="main-container">
       <div className="profile-container">
         {/* <!-- Profile Header --> */}
-        <Bio/>
+        <Bio />
 
-        <MyPosts/>
+        <MyPosts posts={state.posts} />
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ export default function Sidebar() {
       </Link>
 
       <ul className="space-y-8 flex-1">
+        {/* Home */}
         <li>
           <Link to="/" className="flex flex-row items-center gap-2">
             <svg
@@ -35,11 +36,9 @@ export default function Sidebar() {
           </Link>
         </li>
 
+        {/* Notification */}
         <li>
-          <a
-            href="./notification.html"
-            className="flex flex-row items-center gap-2"
-          >
+          <Link to="/notification" className="flex flex-row items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 stroke-zinc-800"
@@ -55,13 +54,11 @@ export default function Sidebar() {
               />
             </svg>
             <span className="text-xs">Notifications</span>
-          </a>
+          </Link>
         </li>
+        {/* create-post */}
         <li>
-          <a
-            href="./create-post.html"
-            className="flex flex-row items-center gap-2"
-          >
+          <Link to="/create-post" className="flex flex-row items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 stroke-zinc-800"
@@ -77,11 +74,11 @@ export default function Sidebar() {
               />
             </svg>
             <span className="text-xs">Create</span>
-          </a>
+          </Link>
         </li>
-
+        {/* profile */}
         <li>
-          <Link to="/me" className="flex flex-row items-center gap-2">
+          <Link to={`/profile/${auth.user._id}`} className="flex flex-row items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -103,7 +100,7 @@ export default function Sidebar() {
       </ul>
 
       <div className="flex justify-between border ">
-        <Link to="/me" className="">
+        <Link to={`/profile/${auth.user._id}`} className="">
           <div className="flex items-center">
             <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-300">
               <img
