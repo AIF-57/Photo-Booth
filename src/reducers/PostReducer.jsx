@@ -1,9 +1,8 @@
-import React from "react";
 import { actions } from "../actions";
 
 const initialState = {
   posts: [],
-  post: [],
+  post: {},
   loading: false,
   error: null,
 };
@@ -24,6 +23,15 @@ function PostReducer(state, action) {
 
     case actions.post.DATA_CREATED:
       return { ...state, loading: false, posts: [...state.posts, action.data] };
+
+    case actions.post.POST_COMMENTED:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: [...(state.post?.comments || []), action.data]
+        },
+      };
 
     default:
       return state;

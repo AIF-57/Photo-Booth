@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import useProfile from "../../hooks/useProfile";
+import useAuth from "../../hooks/useAuth";
 
 export default function Bio() {
+  const { auth } = useAuth();
   const { state } = useProfile();
+
+  const isMe = auth?.user?._id === state?.user?._id;
 
   return (
     <div className="flex flex-col md:flex-row mb-10">
@@ -26,14 +30,16 @@ export default function Bio() {
             {state?.user?.name}
           </h2>
         </div>
-        <div className="flex space-x-2">
-          <Link
-            to="/edit-profile"
-            className="bg-gray-100 px-4 py-1.5 rounded-md text-sm font-medium"
-          >
-            Edit profile
-          </Link>
-        </div>
+        {isMe && (
+          <div className="flex space-x-2">
+            <Link
+              to="/edit-profile"
+              className="bg-gray-100 px-4 py-1.5 rounded-md text-sm font-medium"
+            >
+              Edit profile
+            </Link>
+          </div>
+        )}
 
         {/* <!-- Stats --> */}
         <div className="flex justify-center sm:justify-start space-x-8 mb-4 mt-2">

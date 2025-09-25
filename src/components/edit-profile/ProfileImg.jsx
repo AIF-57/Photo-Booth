@@ -35,7 +35,7 @@ export default function ProfileImg() {
           type: actions.profile.IMAGE_UPDATED,
           data: response.data,
         });
-        navigate("/me");
+        navigate(`/profile/${state.user._id}`);
       }
     } catch (error) {
       dispatch({

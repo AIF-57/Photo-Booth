@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/edit-profile" element={<EditProfile/>}/>
           <Route path="/create-post" element={<CreatePost/>}/>
           <Route path="/notification" element={<NotificationPage/>}/>

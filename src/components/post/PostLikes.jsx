@@ -1,15 +1,17 @@
 import React from "react";
 
-export default function PostLikes({ post }) {
-  const likes = post?.likes?.length;
+export default function PostLikes({ likedUsers }) {
+  const likes = likedUsers.length;
+  // console.log(post?.likes);
 
   return (
     likes > 0 && (
       <div className="px-3">
         <div className="flex items-center">
           <div className="h-6 flex -space-x-2">
-            {post.likes.map((item) => (
+            {likedUsers.map((item) => (
               <img
+                key={item._id}
                 src={`${import.meta.env.VITE_SERVER_BASE_URL_IMG}/${
                   item?.avatar
                 }`}

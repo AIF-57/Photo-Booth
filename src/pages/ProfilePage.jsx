@@ -1,28 +1,27 @@
-import { useEffect, useState } from "react";
-import useAuth from "../hooks/useAuth";
+import { useEffect } from "react";
 import useAxios from "../hooks/useAxios";
 import useProfile from "../hooks/useProfile";
 import { actions } from "../actions";
 import MyPosts from "../components/profile/MyPosts";
 import Bio from "../components/profile/Bio";
+import { useParams } from "react-router-dom";
 
 export default function ProfilePage() {
-  const { auth } = useAuth();
+  const { userId } = useParams(); // userId comes from :userId in the route
+
   const { api } = useAxios();
 
   const { state, dispatch } = useProfile();
 
   useEffect(() => {
-    if (!auth?.user?._id) return; // wait until user is available
+    if (!userId) return; // wait until user is available
 
     dispatch({ type: actions.profile.DATA_FETCHING });
 
     const fetchProfile = async () => {
       try {
         const response = await api.get(
-          `${import.meta.env.VITE_SERVER_BASE_URL}/posts/user/${
-            auth?.user?._id
-          }`
+          `${import.meta.env.VITE_SERVER_BASE_URL}/posts/user/${userId}`
         );
 
         if (response.status === 200) {
@@ -37,7 +36,7 @@ export default function ProfilePage() {
       }
     };
     fetchProfile();
-  }, [auth?.user?._id]);
+  }, [userId]);
 
   // console.log(state);
 

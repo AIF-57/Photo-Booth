@@ -9,7 +9,8 @@ export default function HomePage() {
   const { auth } = useAuth();
   const { state, dispatch } = usePosts();
   const { api } = useAxios();
-  console.log(auth);
+  // console.log(auth);
+  // console.log(state.posts)
 
   useEffect(() => {
     dispatch({ type: actions.post.DATA_FETCHING });

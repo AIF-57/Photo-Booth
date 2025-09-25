@@ -5,9 +5,11 @@ import LogOut from "../auth/LogOut";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import customEmail from "../../utils/customEmail";
+import useProfile from "../../hooks/useProfile";
 
 export default function Sidebar() {
   const { auth } = useAuth();
+
   return (
     <aside className="hidden floating-navbar bg-white  border-r border-[#e5e7eb] px-6 py-2 md:flex flex-col">
       <Link to="/" className="flex gap-2 items-center font-medium py-4 mb-8">
@@ -78,7 +80,10 @@ export default function Sidebar() {
         </li>
         {/* profile */}
         <li>
-          <Link to={`/profile/${auth.user._id}`} className="flex flex-row items-center gap-2">
+          <Link
+            to={`/profile/${auth.user._id}`}
+            className="flex flex-row items-center gap-2"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"

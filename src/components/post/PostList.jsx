@@ -8,7 +8,7 @@ export default function PostList({ posts }) {
   return (
     !!posts &&
     (currentPath === "/"
-      ? posts.map((post) => <PostCard key={post.id} post={post} />)
-      : posts.map((post) => <PostThumbnail key={post.id} post={post} />))
+      ? posts.map((post) => <PostCard key={post._id} post={post} />)
+      : posts.map((post) => <PostThumbnail key={post._id} post={post} />))
   );
 }
